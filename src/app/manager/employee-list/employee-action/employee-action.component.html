@@ -1,0 +1,100 @@
+<app-headers></app-headers>
+<main class="main">
+    <div class="animated fadeIn datatable">
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>{{formStatus}} Employee</strong>
+                    </div>
+                    <form [formGroup]="empForm" (ngSubmit)="formSubmit()">
+                    <div class="card-body ">
+                          <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label class="form-col-form-label" for="inputSuccess1">Employee Code
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="inputSuccess1" formControlName="emp_code" [ngClass]="{ 'is-invalid': submitted && f.emp_code.errors }">
+                                <div *ngIf="submitted && f.emp_code.errors" class="invalid-feedback">
+                                  <div *ngIf="f.emp_code.errors.required">Employee code is required</div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label class="form-col-form-label" for="inputSuccess1">First Name
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="inputSuccess1" formControlName="first_name" [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }">
+                                    <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                                            <div *ngIf="f.first_name.errors.required">First name is required</div>
+                                        </div>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label class="form-col-form-label" for="inputSuccess1"  >
+                                        Last Name
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="inputSuccess1" formControlName="last_name" [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }">
+                                    <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                                        <div *ngIf="f.last_name.errors.required">Last name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label class="form-col-form-label" for="inputSuccess1">Email
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="inputSuccess1" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Email must be formated</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label class="form-col-form-label" for="inputSuccess1">Date of Birth
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="date" class="form-control" id="inputSuccess1" formControlName="birth_date" [ngClass]="{ 'is-invalid': submitted && f.birth_date.errors }">
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="editPassword">
+                                <div class="col-md-6 form-group">
+                                    <label class="form-col-form-label" for="inputSuccess1">Password
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="password" class="form-control" id="inputSuccess1" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                        <div *ngIf="f.password.errors.required">Password is required</div>
+                                        <div *ngIf="f.password.errors.pattern">
+                                            Password must contain at least 7 and max 15 characters one upper, one lower and one special case letter.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label class="form-col-form-label" for="inputSuccess1">Confirm Password
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="password" class="form-control" id="inputSuccess1" formControlName="cPassword" [ngClass]="{ 'is-invalid': submitted && f.cPassword.errors }">
+                                    <div *ngIf="submitted && f.cPassword.errors" class="invalid-feedback">
+                                        <div *ngIf="f.cPassword.errors.required">Confirm Password is required</div>
+                                        <div *ngIf="f.cPassword.errors.mustMatch">Password must match</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="editPassCheck" *ngIf="formStatus =='Edit'">
+                                Do you want to update password? &nbsp;
+                                <input type="checkbox" [checked]="editPassword" (click)="!editPassword ? addPassValidators():removeValidators()">
+                            </div>
+
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-sm btn-success" > Save </button>
+                        <button type="button" class="btn btn-sm btn-danger" routerLink="/employee-list"> Cancel </button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
